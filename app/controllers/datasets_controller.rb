@@ -4,6 +4,9 @@ class DatasetsController < ApplicationController
   def index
     @datasets = Dataset.all(:limit => 25)
     @json = @datasets.to_gmaps4rails
+    # @json = @datasets.to_gmaps4rails do |dataset, marker|
+  # marker.json({ :descriptor => dataset.descriptor, :address => dataset.incident_address })
+# end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -14,4 +14,13 @@ acts_as_gmappable
     @client = SODA::Client.new(:url => url)
     @client.get
   end
+
+    def gmaps4rails_infowindow
+      "#{self.incident_address} </br>
+      #{self.descriptor}"
+    end
+
+    def gmaps4rails_title
+      self.descriptor
+    end
 end
