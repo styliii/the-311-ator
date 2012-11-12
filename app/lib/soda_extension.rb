@@ -12,6 +12,10 @@ module SODA
 
     # SODA::Client.new({:url => "http://data.cityofnewyork.us/api/views/erm2-nwe9/rows.json"})
 
+    def get_with_patron
+      "test"
+    end
+
     def get
       #(params = {})
       # Create query string of escaped key, value pairs
@@ -22,37 +26,45 @@ module SODA
       #   resource = "/resource/" + resource
       # end
 
+      # sess = Patron::Session.new
+      # sess.timeout = 100000
+      # sess.base_url = "http://data.cityofnewyork.us"
+
+      # response = sess.get("/api/views/erm2-nwe9/rows.json")
+
+      # raise(response.inspect)
       # Create our request
-      uri = URI.parse("#{@config[:url]}")
+      # uri = URI.parse("#{@config[:url]}")
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.read_timeout = 10000
-      http.use_ssl = false
+      # http = Net::HTTP.new(uri.host, uri.port)
+      # http.read_timeout = 100000
+      # http.open_timeout = 100000
+      # http.use_ssl = false
 
 
-      request = Net::HTTP::Get.new(uri.request_uri)
+      # request = Net::HTTP::Get.new(uri.request_uri)
       # request.add_field("X-App-Token", @config[:app_token])
 
       # Authenticate if we're supposed to
-      if @config[:username]
-        request.basic_auth @config[:username], @config[:password]
-      end
+      # if @config[:username]
+      #   request.basic_auth @config[:username], @config[:password]
+      # end
 
-      # BAM!
-      response = http.request(request)
+      # # BAM!
+      # response = http.request(request)
 
       # Check our response code
-      if response.code != "200"
-        raise "Error querying \"#{uri.to_s}\": #{response.body}"
-      else
-        # Return a bunch of mashes
-        response = JSON::parse(response.body)
-        if response.is_a? Array
-          return response.collect { |r| Hashie::Mash.new(r) }
-        else
-          return Hashie::Mash.new(response)
-        end
-      end
+      # if response.code != "200"
+      #   raise "Error querying \"#{uri.to_s}\": #{response.body}"
+      # else
+      #   # Return a bunch of mashes
+      #   response = JSON::parse(response.body)
+      #   if response.is_a? Array
+      #     return response.collect { |r| Hashie::Mash.new(r) }
+      #   else
+      #     return Hashie::Mash.new(response)
+      #   end
+      # end
     end
 
     def post(resource, body = "", params = {})

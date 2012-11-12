@@ -3,7 +3,14 @@ class DatasetsController < ApplicationController
   # GET /datasets.json
   def index
     @datasets = Dataset.all(:limit => 25)
-    @json = @datasets.to_gmaps4rails
+    @json = @datasets.to_gmaps4rails do |dataset, marker|
+      marker.infowindow render_to_string(:partial => "/datasets/template", :locals => {:dataset => dataset})
+      marker.picture({
+        :picture => "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png",
+        :width => 32,
+        :height => 32
+        })
+    end
 
     respond_to do |format|
       format.html # index.html.erb
