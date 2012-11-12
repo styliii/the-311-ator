@@ -13,7 +13,23 @@
 
 ActiveRecord::Schema.define(:version => 20121110224411) do
 
-# Could not dump table "datasets" because of following StandardError
-#   Unknown type 'latitude' for column 'lattitude'
+  create_table "datasets", :force => true do |t|
+    t.integer  "unique_key"
+    t.datetime "created_date"
+    t.string   "complaint_type"
+    t.string   "descriptor"
+    t.string   "location_type"
+    t.string   "incident_zip"
+    t.string   "incident_address"
+    t.string   "street_name"
+    t.string   "cross_street_1"
+    t.string   "cross_street_2"
+    t.string   "city"
+    t.float    "lattitude"
+    t.float    "longitude"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.float    "latitude"
+  end
 
 end
