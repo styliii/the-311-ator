@@ -12,7 +12,7 @@ class CreateDatasets < ActiveRecord::Migration
       t.string :cross_street_1
       t.string :cross_street_2
       t.string :city
-      t.float :lattitude
+      t.float :latitude
       t.float :longitude
       t.timestamps
     end
